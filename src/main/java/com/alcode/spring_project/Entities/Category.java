@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "category_table")
@@ -18,6 +18,8 @@ public class Category implements Serializable {
     private Long id;
 
     private String name;
+    @OneToMany
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
     }
@@ -61,6 +63,10 @@ public class Category implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 
 }
